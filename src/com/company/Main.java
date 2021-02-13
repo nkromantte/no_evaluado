@@ -46,13 +46,83 @@ class matriz{
             auxi= i;
             auxj= j;
             this.setMatrices(i,j,k);
+            this.setArrays(1);
+            this.resolverSuma();
         }
     }
 
-    public void renderArray(){
-        for (int c = 0 ; c< this.array.length;c++){
-            for (int f = 0; f< this.array[f].length;f++){
-                System.out.println ( this.array[c][f] );
+    public void setArrays(int o){
+        int contador= 1;
+        System.out.println("Rellene la matriz:"+ contador);
+        if ( o > 1) {
+            for (int f = 0; f < this.array.length; f++) {
+                for (int c = 0; c < this.array[f].length; c++) {
+                        System.out.println("Posición:" + "["+ c + "," + f + "]") ;
+                        this.array[c][f] = this.n.nextInt();
+                }
+            }
+
+        }else{
+            for (int f = 0; f < this.array.length; f++) {
+                for (int c = 0; c < this.array[f].length; c++) {
+                    System.out.println("Posición:" + "["+ c + "," + f + "]") ;
+                    this.array[c][f] = this.n.nextInt();
+                }
+            }
+
+            for (int f = 0; f < this.array2.length; f++) {
+                for (int c = 0; c < this.array2[f].length; c++) {
+                    System.out.println("Posición:" + "["+ c + "," + f + "]") ;
+                    this.array2[c][f] = this.n.nextInt();
+                }
+            }
+
+            for (int f = 0; f < this.array3.length; f++) {
+                for (int c = 0; c < this.array3[f].length; c++) {
+                    System.out.println("Posición:" + "["+ c + "," + f + "]") ;
+                    this.array3[c][f] = this.n.nextInt();
+                }
+            }
+
+        }
+        contador++;
+    }
+
+    public void resolverSuma(){
+         int[][] array1 = this.array;
+         int[][] array2 = this.array;
+
+        for (int f = 0; f < this.array3.length; f++) {
+            for (int c = 0; c < this.array3[f].length; c++) {
+               array1[c][f] = this.array[c][f] + this.array3[c][f];
+            }
+        }
+        System.out.println("Matriz resultande de la Suma M_1 + M_2");
+        this.renderArray( array1);
+
+
+        System.out.println("Matriz resultande de la Multiplicacion (M_1 + M_2) * M_3");
+        this.renderArray( array2);
+
+    }
+
+    public void resolverIndefinida(){
+
+    }
+
+    public void resolverIdentidad(){
+
+    }
+
+    public void resolverTriangulo(){
+
+    }
+
+
+    public void renderArray(int[][] array){
+        for (int c = 0 ; c< array.length;c++){
+            for (int f = 0; f< array[f].length;f++){
+                System.out.println ( array[c][f] );
             }
         }
     }
