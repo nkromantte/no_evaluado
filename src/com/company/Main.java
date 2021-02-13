@@ -123,7 +123,9 @@ class matriz{
         for (int c = 0 ; c< array.length;c++){
             for (int f = 0; f< array[f].length;f++){
                 System.out.println ( array[c][f] );
+                System.out.println(",");
             }
+            System.out.println(" ");
         }
     }
 
