@@ -70,6 +70,95 @@ class matriz{
         }
     }
 
+
+    public void setIdentidad(){
+        int i,j;
+        int e=0;
+        System.out.println("Tamaño de la filas");
+        i = this.n.nextInt();
+        System.out.println("Tamaño de la columnas");
+        j = this.n.nextInt();
+
+        this.setMatrices(i,j,1);
+        this.setArrays(2);
+
+        for (int f = 0; f < this.array.length; f++) {
+            for (int c = 0; c < this.array[f].length; c++) {
+                if(c==f ){
+                    if(this.array[c][f]==1){
+
+                    }else{ e++;  }
+                }
+                if(c!=f ){
+                    if(this.array[c][f]==0){
+
+                    }else{ e++; }
+                }
+
+            }
+        }
+        if ( e == 0){System.out.println("Es una matriz identidad");
+        }else{
+            System.out.println("No es una matriz identidad");
+        }
+        for (int f = 0; f < this.array.length; f++) {
+            for (int c = 0; c < this.array[f].length; c++) {
+                System.out.print(this.array[f][c]);
+                if(c < this.array[f].length -1)
+                    System.out.print(", ") ;
+            }
+            System.out.println(", ") ;
+        }
+    }
+
+    public void setTriangulo(){
+        int i,j,e;
+        e=0;
+        System.out.println("Tamaño de la filas");
+        i = this.n.nextInt();
+        System.out.println("Tamaño de la columnas");
+        j = this.n.nextInt();
+
+        this.setMatrices(i,j,2);
+        this.setArrays(2);
+
+        for (int f = 0; f < this.array.length; f++) {
+            for (int c = 0; c < this.array[f].length; c++) {
+                if (c >= f) {
+                    if (this.array[c][f] >= 1) {
+
+                    } else {
+                        e++;
+                    }
+                }
+
+                if (f > c) {
+                    if (this.array[c][f] == 0) {
+
+                    } else {
+                        e++;
+                    }
+                }
+            }
+        }
+        if ( e == 0){
+            System.out.println("Es una matriz identidad");
+        }else{
+            System.out.println("No una matriz Triangulo Superior");
+        }
+        for (int f = 0; f < this.array.length; f++) {
+            for (int c = 0; c < this.array[f].length; c++) {
+                System.out.print(this.array[f][c]);
+                if(c < this.array[f].length -1)
+                    System.out.print(", ") ;
+            }
+            System.out.println(", ") ;
+        }
+    }
+
+
+
+
     public void setArrays(int o){
         int contador= 1;
         System.out.println("Rellene la matriz:"+ contador);
@@ -138,24 +227,6 @@ class matriz{
         }
     }
 
-    public void resolverIndefinida(){
-
-        for (int f = 0; f < this.array.length; f++) {
-            for (int c = 0; c < this.array[f].length; c++) {
-                this.arrayR[f][c] = this.array[f][c] + this.array2[f][c];
-            }
-        }
-    }
-
-    public void resolverIdentidad(){
-
-    }
-
-    public void resolverTriangulo(){
-
-    }
-
-
     public void renderArray(int[][] a){
         for (int c = 0 ; c< a.length;c++){
             for (int f = 0; f< a[f].length;f++){
@@ -206,6 +277,12 @@ class    menu{
                          this.renderMenu();
                          break;
                 case 2: array.setIdefinida();
+                        this.renderMenu();
+                        break;
+                case 3: array.setIdentidad();
+                        this.renderMenu();
+                        break;
+                case 4: array.setTriangulo();
                         this.renderMenu();
                         break;
                 case 5: System.out.println("Hasta luego");
