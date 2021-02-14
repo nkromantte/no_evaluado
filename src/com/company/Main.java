@@ -85,14 +85,14 @@ class matriz{
         for (int f = 0; f < this.array.length; f++) {
             for (int c = 0; c < this.array[f].length; c++) {
                 if(c==f ){
-                    if(this.array[c][f]==1){
-
-                    }else{ e++;  }
+                    if(this.array[c][f]!=1){
+                        e++;
+                    }
                 }
                 if(c!=f ){
-                    if(this.array[c][f]==0){
-
-                    }else{ e++; }
+                    if(this.array[c][f]!=0){
+                        e++;
+                    }
                 }
 
             }
@@ -119,30 +119,26 @@ class matriz{
         System.out.println("Tamaño de la columnas");
         j = this.n.nextInt();
 
-        this.setMatrices(i,j,2);
+        this.setMatrices(i,j,1);
         this.setArrays(2);
 
         for (int f = 0; f < this.array.length; f++) {
             for (int c = 0; c < this.array[f].length; c++) {
-                if (c >= f) {
-                    if (this.array[c][f] >= 1) {
 
-                    } else {
+                if(c==f ){
+                    if(this.array[c][f]<1){
                         e++;
                     }
                 }
-
-                if (f > c) {
-                    if (this.array[c][f] == 0) {
-
-                    } else {
+                if(c<f ){
+                    if(this.array[c][f]==0){
                         e++;
                     }
                 }
             }
         }
         if ( e == 0){
-            System.out.println("Es una matriz identidad");
+            System.out.println("Es una matriz Triangulo Superior");
         }else{
             System.out.println("No una matriz Triangulo Superior");
         }
@@ -240,10 +236,10 @@ class matriz{
     public void setMatrices(int x,int y, int o){
         switch(o){
             case 1:  this.array = new int[x][y];
-                break;
+                     break;
             case 2:  this.array2 = new int[x][y];
                      this.arrayR = new int[x][y];
-                break;
+                     break;
             case 3:  this.array3 = new int[x][y];
 
                 break;
