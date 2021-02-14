@@ -50,10 +50,31 @@ class matriz{
         this.setArrays(1);
         this.resolverSuma();
     }
+    public void setIdefinida(){
+        int i,j;
+        System.out.println("Tamaño de la filas");
+        i = this.n.nextInt();
+        System.out.println("Tamaño de la columnas");
+        j = this.n.nextInt();
+
+        this.setMatrices(i,j,2);
+
+        for (int f = 0; f < this.array2.length; f++) {
+            for (int c = 0; c < this.array2[f].length; c++) {
+                this.arrayR[f][c] = 23*((f*f*f*f)) +20*((c*c*c)) -3;
+                System.out.print(this.arrayR[f][c]);
+                if(c < this.array2[f].length -1)
+                System.out.print(", ") ;
+            }
+            System.out.println(", ") ;
+        }
+    }
 
     public void setArrays(int o){
         int contador= 1;
         System.out.println("Rellene la matriz:"+ contador);
+
+
         if ( o > 1) {
             for (int f = 0; f < this.array.length; f++) {
                 for (int c = 0; c < this.array[f].length; c++) {
@@ -119,6 +140,11 @@ class matriz{
 
     public void resolverIndefinida(){
 
+        for (int f = 0; f < this.array.length; f++) {
+            for (int c = 0; c < this.array[f].length; c++) {
+                this.arrayR[f][c] = this.array[f][c] + this.array2[f][c];
+            }
+        }
     }
 
     public void resolverIdentidad(){
@@ -179,6 +205,9 @@ class    menu{
                 case 1:  array.setSum();
                          this.renderMenu();
                          break;
+                case 2: array.setIdefinida();
+                        this.renderMenu();
+                        break;
                 case 5: System.out.println("Hasta luego");
                         this.result = true;
                         break;
