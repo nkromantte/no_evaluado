@@ -9,6 +9,7 @@ class matriz{
 
 
     public void setSum(){
+        boolean out = false;
         int i,j;
         int auxi = 0;
         int auxj = 0;
@@ -24,9 +25,11 @@ class matriz{
                     if (j == auxj) {
                     } else {
                         System.out.println("Las matrices No son iguales");
+                        out = true;
                         break;
                     }
                 }else{  System.out.println("Las matrices No son iguales");
+                    out = true;
                     break;
                 }
             }
@@ -36,19 +39,23 @@ class matriz{
                     if (j == auxi) {
                     } else {
                         System.out.println("tamaño invalido para Multiplicacion");
+                        out = true;
                         break;
                     }
                 }else{  System.out.println("Tamñano invalido para Multipliacion Fila M_B distita Columna M_C");
+                    out = true;
                     break;
                 }
             }
-
+            if (out == false){
             auxi= i;
             auxj= j;
-            this.setMatrices(i,j,k);
+            this.setMatrices(i,j,k);}else{}
         }
+
+        if (out == false){
         this.setArrays(1);
-        this.resolverSuma();
+        this.resolverSuma();}else {}
     }
     public void setIdefinida(){
         int i,j;
@@ -101,14 +108,7 @@ class matriz{
         }else{
             System.out.println("No es una matriz identidad");
         }
-        for (int f = 0; f < this.array.length; f++) {
-            for (int c = 0; c < this.array[f].length; c++) {
-                System.out.print(this.array[f][c]);
-                if(c < this.array[f].length -1)
-                    System.out.print(", ") ;
-            }
-            System.out.println(", ") ;
-        }
+        this.renderArray(this.array);
     }
 
     public void setTriangulo(){
@@ -142,18 +142,9 @@ class matriz{
         }else{
             System.out.println("No una matriz Triangulo Superior");
         }
-        for (int f = 0; f < this.array.length; f++) {
-            for (int c = 0; c < this.array[f].length; c++) {
-                System.out.print(this.array[f][c]);
-                if(c < this.array[f].length -1)
-                    System.out.print(", ") ;
-            }
-            System.out.println(", ") ;
-        }
+
+        this.renderArray(this.array);
     }
-
-
-
 
     public void setArrays(int o){
         int contador= 1;
@@ -196,40 +187,40 @@ class matriz{
 
     public void resolverSuma(){
 
+        // opcion 1 para suma, opcion 2 para multiplicacion
+        this.arrayR = operaciones(this.array,this.array2 , 1);
 
-        for (int f = 0; f < this.array.length; f++) {
-            for (int c = 0; c < this.array[f].length; c++) {
-               this.arrayR[f][c] = this.array[f][c] + this.array2[f][c];
-            }
-        }
         System.out.println("Matriz resultande de la Suma M_1 + M_2");
-        for (int f = 0; f < this.arrayR.length; f++) {
-            for (int c = 0; c < this.arrayR[f].length; c++) {
-               System.out.println( this.arrayR[f][c]);
-            }
-        }
+        this.renderArray(this.arrayR);
 
-        for (int f = 0; f < this.arrayR.length; f++) {
-            for (int c = 0; c < this.arrayR[f].length; c++) {
-                this.arrayR[f][c] = this.arrayR[f][c] * this.array3[c][f];
-            }
-        }
-
+        this.arrayR = operaciones(this.arrayR,this.array2 , 2);
         System.out.println("Matriz resultande de la Multiplicacion (M_1 + M_2) * M_3");
-        for (int f = 0; f < this.arrayR.length; f++) {
-            for (int c = 0; c < this.arrayR[f].length; c++) {
-                System.out.println( this.arrayR[f][c]);
+        this.renderArray(this.arrayR);
+    }
+
+    public int[][] operaciones(int[][] a, int[][] b , int x){
+
+        for (int f = 0; f < a.length; f++) {
+            for (int c = 0; c < a[f].length; c++) {
+               if (x==1) {
+                   this.arrayR[c][f] = a[f][c] + b[f][c];
+               }
+               if (x==2) {
+                    this.arrayR[c][f] = a[f][c] * b[f][c];
+               }
             }
         }
+        return  this.arrayR;
     }
 
     public void renderArray(int[][] a){
-        for (int c = 0 ; c< a.length;c++){
-            for (int f = 0; f< a[f].length;f++){
-                System.out.println ( a[f][c] );
-                System.out.print(",");
+        for (int f = 0; f < a.length; f++) {
+            for (int c = 0; c < a[f].length; c++) {
+                System.out.print(a[f][c]);
+                if(c < a[f].length -1)
+                    System.out.print(", ") ;
             }
-            System.out.println(" ");
+            System.out.println(", ") ;
         }
     }
 
